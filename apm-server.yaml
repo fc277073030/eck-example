@@ -1,0 +1,9 @@
+apiVersion: apm.k8s.elastic.co/v1
+kind: ApmServer
+metadata:
+  name: eck
+spec:
+  version: 7.12.1
+  count: 1
+  elasticsearchRef:
+    name: eck

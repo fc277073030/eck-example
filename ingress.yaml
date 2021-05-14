@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: kibana-ingress
+  namespace: logging
+  annotations:
+    kubernetes.io/ingress.class: nginx
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+#    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+spec:
+  rules:
+    - host: test-logging.arnoo.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: eck-kb-http
+              servicePort: 5601
+  tls:
+    - hosts:
+        - test-logging.arnoo.com
+      secretName: arnoo-tls
